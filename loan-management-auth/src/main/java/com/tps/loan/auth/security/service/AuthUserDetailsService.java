@@ -1,7 +1,5 @@
-package com.tps.loan.auth.service;
+package com.tps.loan.auth.security.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,15 +12,14 @@ import com.tps.loan.entity.Account;
 import com.tps.loan.repo.AccountRepo;
 
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class AuthUserDetailsService implements UserDetailsService {
 
-	@Autowired
-    private AccountRepo repo;
-	
-	@Autowired
-    private PasswordEncoder passwordEncoder;
+    private final AccountRepo repo;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,7 +28,6 @@ public class AuthUserDetailsService implements UserDetailsService {
                 .map(account ->User
                 		.withUsername(account.getUsername())
                 		.password(account.getPassword())
-                		.authorities(new SimpleGrantedAuthority("ADMIN"))
                 		.build())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username %s".formatted(username)));
     }

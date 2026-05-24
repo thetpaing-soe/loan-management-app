@@ -22,7 +22,6 @@
 	<modules>
 		<module>loan-management-application</module>
 		<module>loan-management-domain</module>
-		<module>loan-management-admin</module>
 		<module>loan-management-auth</module>
 	</modules>
 </project>

@@ -1,0 +1,9 @@
+package com.tps.loan.config.message;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties(prefix = "app.jwt")
+public record AppJwtProperties(
+		String issuer,
+		String secretKey
+		) {}
