@@ -1,0 +1,19 @@
+package com.tps.loan.entity.embeddable;
+
+import java.math.BigDecimal;
+
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
+public class LoanFees {
+	
+	private BigDecimal loanAmount;
+	private BigDecimal trxFees;
+	private BigDecimal totalAmount;
+}
